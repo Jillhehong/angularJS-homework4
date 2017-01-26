@@ -5,10 +5,14 @@
     'use strict';
     angular.module('MenuApp')
         .controller('categoriesController', categoriesController);
-    categoriesController.$inject = ['categories'];
-    function categoriesController( categories) {
+    categoriesController.$inject = ['MenuDataService','categories'];
+    function categoriesController(MenuDataService, categories) {
         var categoriesList = this;
-        categoriesList.categories = categories;
+        var promise = MenuDataService.getAllCategories();
+        promise.then(function (response) {
+            categoriesList.categories  = response.data
+        });
+        // categoriesList.categories = categories;
         // console.log('categories: ', categoriesList.categories);
     }
 })();

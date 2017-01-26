@@ -21,7 +21,7 @@
                 method: 'GET',
                 url: url('https://davids-restaurant.herokuapp.com/menu_items.json?category='+ categoryShortName)
             });
-            return response;
+            return response.menu_items;
         };
     }
 })();

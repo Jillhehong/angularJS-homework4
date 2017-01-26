@@ -39,20 +39,22 @@
                 }
             })
 
-//             // .state('itemsDetail', {
-//             //     url: '/categories/itemsList/{shortName}',
-//             //     templateUrl: 'src/menuApp/templates/item.template.html',
-//             //     controller: 'itemDetailController as itemDetail',
-//             //     resolve: {
-//             //         items: ['$stateParams', 'MenuDataService',
-//             //             function ($stateParams, MenuDataService) {
-//             //                 var promise = MenuDataService.getItemsForCategory(shortName);
-//             //                 promise.then(function (response) {
-//             //                     var items = response.data;
-//             //                 });
-//             //                 return items.menu_items;
-//             //             }]
-//             //     }
-//             // });
+            .state('itemsDetail', {
+                url: '/categories/itemsList/:shortName',
+                templateUrl: 'src/menuApp/templates/items.template.html',
+                controller: 'itemsDetailController as itemsDetail'
+                // resolve: {
+                //     items: ['$stateParams', 'MenuDataService',
+                //         function ($stateParams, MenuDataService) {
+                //             var promise = MenuDataService.getItemsForCategory($stateParams.shortName);
+                //             promise.then(function (response) {
+                //                 var items = response.data;
+                //                 console.log('items: ', items);
+                //                 return items.menu_items;
+                //             });
+                //
+                //         }]
+                // }
+            });
     }
 })();
