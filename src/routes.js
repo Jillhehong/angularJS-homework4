@@ -29,32 +29,29 @@
                 controller: 'categoriesController as categoriesList',
                 resolve: {
                     categories: ['MenuDataService', function (MenuDataService) {
-                          MenuDataService.getAllCategories()
-                              .then(function (response) {
-                                  console.log('categories is ', response.data);
-                                  return response.data;
-                              });
+                        var promise = MenuDataService.getAllCategories();
+                        return promise;
                         }
                     ]
                 }
             })
 
             .state('itemsDetail', {
-                url: '/categories/itemsList/:shortName',
+                url: '/categories/itemsList/{shortName}',
                 templateUrl: 'src/menuApp/templates/items.template.html',
-                controller: 'itemsDetailController as itemsDetail'
-                // resolve: {
-                //     items: ['$stateParams', 'MenuDataService',
-                //         function ($stateParams, MenuDataService) {
-                //             var promise = MenuDataService.getItemsForCategory($stateParams.shortName);
-                //             promise.then(function (response) {
-                //                 var items = response.data;
-                //                 console.log('items: ', items);
-                //                 return items.menu_items;
-                //             });
-                //
-                //         }]
-                // }
+                controller: 'itemsDetailController as itemsDetail',
+                resolve: {
+                    items: ['$stateParams', 'MenuDataService',
+                        function ($stateParams, MenuDataService) {
+                            var promise = MenuDataService.getItemsForCategory($stateParams.shortName);
+                            // promise.then(function (response) {
+                            //     var items = response.data;
+                            //     console.log('items: ', items);
+                            //     return items;
+                            // });
+                            return promise;
+                        }]
+                }
             });
     }
 })();

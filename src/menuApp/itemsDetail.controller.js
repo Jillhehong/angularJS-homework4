@@ -6,13 +6,9 @@
     angular.module('MenuApp')
         .controller('itemsDetailController', itemsDetailController);
     itemsDetailController.$inject = ['$stateParams','MenuDataService', 'items'];
-    function itemsDetailController($stateParams, MenuDataService, items) {
-        var itemDetail = this;
-        var promise = MenuDataService.getItemsForCategory($stateParams.shortName);
-        promise.then(function (response) {
-            var items = response.data;
-            itemDetail.items = items;
-        });
-        // itemsDetail.items = items;
+    function itemsDetailController($stateParams, MenuDataService , items ) {  //
+        // console.log(items.data.menu_items);
+        var itemsDetail = this;
+        itemsDetail.items = items.data.menu_items;
     }
 })();
